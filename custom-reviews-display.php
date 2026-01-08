@@ -3,7 +3,7 @@
  * Plugin Name: Custom Reviews Display
  * Plugin URI: https://github.com/seltzertime/-reviews-wp
  * Description: A customizable reviews display plugin with backend management and frontend shortcode display
- * Version: 1.0.0
+ * Version: 1.0.3
  * Author: Cliff Cordes
  * Author URI: https://github.com/seltzertime
  * License: GPL v2 or later
