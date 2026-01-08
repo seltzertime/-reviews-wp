@@ -190,6 +190,7 @@ class CRD_Reviews_Shortcode {
                 display: grid;
                 grid-template-columns: repeat(<?php echo esc_attr($columns); ?>, 1fr);
                 gap: <?php echo esc_attr($gap); ?>px;
+                align-items: start;
             }
 
             #<?php echo esc_attr($instance_id); ?> .crd-review-card {
