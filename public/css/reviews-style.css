@@ -15,6 +15,7 @@
     display: grid;
     /* grid-template-columns set via inline styles per instance */
     gap: 20px;
+    align-items: start;
 }
 
 /* Review Card */
