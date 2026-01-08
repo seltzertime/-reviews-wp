@@ -25,7 +25,6 @@
     border-radius: 10px;
     padding: 20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 100%;
     box-sizing: border-box;
 }
 
@@ -80,7 +79,6 @@
 
 /* Body */
 .crd-review-body {
-    flex: 1;
     margin-bottom: 16px;
     font-size: 16px;
     line-height: 1.6;
@@ -105,6 +103,9 @@
 
 .crd-review-name strong {
     font-weight: 600;
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
 }
 
 /* Profile Picture */
