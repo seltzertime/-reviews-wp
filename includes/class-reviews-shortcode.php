@@ -242,10 +242,17 @@ class CRD_Reviews_Shortcode {
                 width: <?php echo esc_attr($profile_pic_size); ?>px;
                 height: <?php echo esc_attr($profile_pic_size); ?>px;
                 border-radius: <?php echo esc_attr($profile_pic_radius); ?>;
+                align-self: center !important;
             }
 
             #<?php echo esc_attr($instance_id); ?> .crd-reviewer-name-text {
-                transform: translateY(<?php echo esc_attr($name_vertical_offset); ?>px);
+                transform: translateY(<?php echo esc_attr($name_vertical_offset); ?>px) !important;
+                align-self: center !important;
+            }
+
+            #<?php echo esc_attr($instance_id); ?> .crd-review-name {
+                display: flex !important;
+                align-items: center !important;
             }
 
             @media (max-width: 768px) {
