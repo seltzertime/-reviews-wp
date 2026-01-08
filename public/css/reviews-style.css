@@ -105,6 +105,9 @@
 .crd-review-name strong {
     font-weight: 600;
     line-height: 1;
+    margin: 0;
+    padding: 0;
+    transform: translateY(-1px);
 }
 
 /* Profile Picture */
