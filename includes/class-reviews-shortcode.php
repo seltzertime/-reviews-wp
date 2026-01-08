@@ -143,7 +143,7 @@ class CRD_Reviews_Shortcode {
                             <img src="<?php echo esc_url($profile_pic_url); ?>" alt="<?php echo esc_attr($name); ?>" class="<?php echo esc_attr($profile_pic_class); ?>">
                         <?php endif;
                     endif; ?>
-                    <strong><?php echo esc_html($name); ?></strong>
+                    <strong class="crd-reviewer-name-text"><?php echo esc_html($name); ?></strong>
                 </div>
             <?php endif; ?>
         </div>
@@ -183,6 +183,7 @@ class CRD_Reviews_Shortcode {
         $profile_pic_size = isset($settings['profile_pic_size']) ? $settings['profile_pic_size'] : 50;
         $profile_pic_shape = isset($settings['profile_pic_shape']) ? $settings['profile_pic_shape'] : 'circle';
         $profile_pic_radius = $profile_pic_shape === 'circle' ? '50%' : '0';
+        $name_vertical_offset = isset($settings['name_vertical_offset']) ? intval($settings['name_vertical_offset']) : 0;
 
         ?>
         <style>
@@ -241,6 +242,10 @@ class CRD_Reviews_Shortcode {
                 width: <?php echo esc_attr($profile_pic_size); ?>px;
                 height: <?php echo esc_attr($profile_pic_size); ?>px;
                 border-radius: <?php echo esc_attr($profile_pic_radius); ?>;
+            }
+
+            #<?php echo esc_attr($instance_id); ?> .crd-reviewer-name-text {
+                margin-top: <?php echo esc_attr($name_vertical_offset); ?>px;
             }
 
             @media (max-width: 768px) {

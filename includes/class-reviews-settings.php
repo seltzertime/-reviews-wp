@@ -212,6 +212,14 @@ class CRD_Reviews_Settings {
             'crd_profile_section'
         );
 
+        add_settings_field(
+            'name_vertical_offset',
+            __('Name Vertical Offset (px)', 'custom-reviews-display'),
+            array($this, 'name_vertical_offset_callback'),
+            'crd-settings',
+            'crd_profile_section'
+        );
+
         // Color Settings Section
         add_settings_section(
             'crd_color_section',
@@ -295,6 +303,13 @@ class CRD_Reviews_Settings {
         // Profile picture shape
         if (isset($input['profile_pic_shape']) && in_array($input['profile_pic_shape'], array('circle', 'square'))) {
             $sanitized['profile_pic_shape'] = $input['profile_pic_shape'];
+        }
+
+        // Name vertical offset (can be negative)
+        if (isset($input['name_vertical_offset'])) {
+            $offset = intval($input['name_vertical_offset']);
+            // Clamp between -20 and 20
+            $sanitized['name_vertical_offset'] = max(-20, min(20, $offset));
         }
 
         return $sanitized;
@@ -573,6 +588,15 @@ class CRD_Reviews_Settings {
             <option value="square" <?php selected($value, 'square'); ?>><?php _e('Square', 'custom-reviews-display'); ?></option>
         </select>
         <p class="description"><?php _e('Shape of profile pictures', 'custom-reviews-display'); ?></p>
+        <?php
+    }
+
+    public function name_vertical_offset_callback() {
+        $options = get_option('crd_settings');
+        $value = isset($options['name_vertical_offset']) ? $options['name_vertical_offset'] : 0;
+        ?>
+        <input type="number" name="crd_settings[name_vertical_offset]" value="<?php echo esc_attr($value); ?>" min="-20" max="20" class="small-text">
+        <p class="description"><?php _e('Vertical offset for reviewer name text in pixels (use negative values to move up, positive to move down)', 'custom-reviews-display'); ?></p>
         <?php
     }
 }
