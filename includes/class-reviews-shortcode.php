@@ -181,6 +181,8 @@ class CRD_Reviews_Shortcode {
 
         $rating_size = isset($settings['rating_font_size']) ? $settings['rating_font_size'] : 20;
         $profile_pic_size = isset($settings['profile_pic_size']) ? $settings['profile_pic_size'] : 50;
+        $profile_pic_shape = isset($settings['profile_pic_shape']) ? $settings['profile_pic_shape'] : 'circle';
+        $profile_pic_radius = $profile_pic_shape === 'circle' ? '50%' : '0';
 
         ?>
         <style>
@@ -237,6 +239,7 @@ class CRD_Reviews_Shortcode {
             #<?php echo esc_attr($instance_id); ?> .crd-review-profile-pic {
                 width: <?php echo esc_attr($profile_pic_size); ?>px;
                 height: <?php echo esc_attr($profile_pic_size); ?>px;
+                border-radius: <?php echo esc_attr($profile_pic_radius); ?>;
             }
 
             @media (max-width: 768px) {
