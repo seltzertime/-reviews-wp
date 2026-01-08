@@ -1,0 +1,186 @@
+/**
+ * Custom Reviews Display - Admin Styles
+ *
+ * @package Custom_Reviews_Display
+ */
+
+/* Meta Box Styling */
+.crd-admin-meta-box {
+    padding: 10px 0;
+}
+
+.crd-admin-meta-box .description {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.crd-field-group {
+    margin-bottom: 20px;
+}
+
+.crd-field-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.crd-field-group label .description {
+    font-weight: normal;
+    font-style: italic;
+    color: #666;
+    font-size: 13px;
+    margin-left: 5px;
+}
+
+.crd-field-group input[type="text"],
+.crd-field-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.crd-field-group textarea {
+    resize: vertical;
+    font-family: inherit;
+}
+
+.crd-inline-fields {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.crd-inline-field {
+    flex: 1;
+}
+
+.crd-inline-field label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.crd-inline-field select {
+    width: 100%;
+    margin-top: 8px;
+}
+
+/* Settings Page Styling */
+.crd-settings-wrapper {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.crd-settings-main {
+    flex: 1;
+    max-width: 800px;
+}
+
+.crd-settings-sidebar {
+    width: 300px;
+    flex-shrink: 0;
+}
+
+.crd-sidebar-box {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.crd-sidebar-box h3 {
+    margin-top: 0;
+    font-size: 16px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.crd-sidebar-box h4 {
+    font-size: 14px;
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+.crd-sidebar-box code {
+    background: #f6f7f7;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 13px;
+    display: inline-block;
+    margin: 5px 0;
+}
+
+.crd-sidebar-box p {
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.crd-shortcode-options {
+    list-style: none;
+    padding-left: 0;
+    margin: 10px 0;
+}
+
+.crd-shortcode-options li {
+    margin-bottom: 8px;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.crd-shortcode-options code {
+    font-weight: 600;
+}
+
+/* Form Table Improvements */
+.form-table th {
+    width: 220px;
+    font-weight: 600;
+}
+
+.form-table td p.description {
+    margin-top: 5px;
+    font-size: 13px;
+}
+
+/* Color Picker */
+.crd-color-picker {
+    max-width: 100px;
+}
+
+/* Settings Sections */
+.form-table {
+    margin-top: 0;
+}
+
+h2.title {
+    margin-bottom: 0;
+}
+
+/* Responsive */
+@media (max-width: 1280px) {
+    .crd-settings-wrapper {
+        flex-direction: column;
+    }
+
+    .crd-settings-sidebar {
+        width: 100%;
+        max-width: 800px;
+    }
+}
+
+@media (max-width: 782px) {
+    .crd-inline-fields {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .form-table th {
+        width: 100%;
+    }
+}
