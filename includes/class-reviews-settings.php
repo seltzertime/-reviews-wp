@@ -180,6 +180,38 @@ class CRD_Reviews_Settings {
             'crd_typography_section'
         );
 
+        add_settings_field(
+            'rating_font_size',
+            __('Star Rating Size (px)', 'custom-reviews-display'),
+            array($this, 'rating_font_size_callback'),
+            'crd-settings',
+            'crd_typography_section'
+        );
+
+        // Profile Picture Section
+        add_settings_section(
+            'crd_profile_section',
+            __('Profile Picture Settings', 'custom-reviews-display'),
+            array($this, 'profile_section_callback'),
+            'crd-settings'
+        );
+
+        add_settings_field(
+            'profile_pic_size',
+            __('Profile Picture Size (px)', 'custom-reviews-display'),
+            array($this, 'profile_pic_size_callback'),
+            'crd-settings',
+            'crd_profile_section'
+        );
+
+        add_settings_field(
+            'profile_pic_shape',
+            __('Profile Picture Shape', 'custom-reviews-display'),
+            array($this, 'profile_pic_shape_callback'),
+            'crd-settings',
+            'crd_profile_section'
+        );
+
         // Color Settings Section
         add_settings_section(
             'crd_color_section',
@@ -228,7 +260,7 @@ class CRD_Reviews_Settings {
         $sanitized = array();
 
         // Numbers
-        $number_fields = array('columns', 'border_radius', 'header_font_size', 'body_font_size', 'name_font_size', 'card_padding', 'gap_between_cards', 'mobile_columns');
+        $number_fields = array('columns', 'border_radius', 'header_font_size', 'body_font_size', 'name_font_size', 'rating_font_size', 'card_padding', 'gap_between_cards', 'mobile_columns', 'profile_pic_size');
         foreach ($number_fields as $field) {
             if (isset($input[$field])) {
                 $sanitized[$field] = absint($input[$field]);
@@ -258,6 +290,11 @@ class CRD_Reviews_Settings {
         // Card border width
         if (isset($input['card_border_width'])) {
             $sanitized['card_border_width'] = absint($input['card_border_width']);
+        }
+
+        // Profile picture shape
+        if (isset($input['profile_pic_shape']) && in_array($input['profile_pic_shape'], array('circle', 'square'))) {
+            $sanitized['profile_pic_shape'] = $input['profile_pic_shape'];
         }
 
         return $sanitized;
@@ -326,6 +363,10 @@ class CRD_Reviews_Settings {
 
     public function typography_section_callback() {
         echo '<p>' . __('Set font sizes and families for review elements.', 'custom-reviews-display') . '</p>';
+    }
+
+    public function profile_section_callback() {
+        echo '<p>' . __('Configure profile picture display for reviewers.', 'custom-reviews-display') . '</p>';
     }
 
     public function color_section_callback() {
@@ -502,6 +543,36 @@ class CRD_Reviews_Settings {
         ?>
         <input type="text" name="crd_settings[rating_color]" value="<?php echo esc_attr($value); ?>" class="crd-color-picker">
         <p class="description"><?php _e('Color for star ratings', 'custom-reviews-display'); ?></p>
+        <?php
+    }
+
+    public function rating_font_size_callback() {
+        $options = get_option('crd_settings');
+        $value = isset($options['rating_font_size']) ? $options['rating_font_size'] : 20;
+        ?>
+        <input type="number" name="crd_settings[rating_font_size]" value="<?php echo esc_attr($value); ?>" min="10" max="48" class="small-text">
+        <p class="description"><?php _e('Size of star rating icons in pixels', 'custom-reviews-display'); ?></p>
+        <?php
+    }
+
+    public function profile_pic_size_callback() {
+        $options = get_option('crd_settings');
+        $value = isset($options['profile_pic_size']) ? $options['profile_pic_size'] : 50;
+        ?>
+        <input type="number" name="crd_settings[profile_pic_size]" value="<?php echo esc_attr($value); ?>" min="20" max="200" class="small-text">
+        <p class="description"><?php _e('Size of profile pictures in pixels (width and height)', 'custom-reviews-display'); ?></p>
+        <?php
+    }
+
+    public function profile_pic_shape_callback() {
+        $options = get_option('crd_settings');
+        $value = isset($options['profile_pic_shape']) ? $options['profile_pic_shape'] : 'circle';
+        ?>
+        <select name="crd_settings[profile_pic_shape]">
+            <option value="circle" <?php selected($value, 'circle'); ?>><?php _e('Circle', 'custom-reviews-display'); ?></option>
+            <option value="square" <?php selected($value, 'square'); ?>><?php _e('Square', 'custom-reviews-display'); ?></option>
+        </select>
+        <p class="description"><?php _e('Shape of profile pictures', 'custom-reviews-display'); ?></p>
         <?php
     }
 }

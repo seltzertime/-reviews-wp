@@ -65,6 +65,7 @@ function crd_activate_plugin() {
             'header_font_size' => 24,
             'body_font_size' => 16,
             'name_font_size' => 14,
+            'rating_font_size' => 20,
             'header_font_family' => '',
             'body_font_family' => '',
             'name_font_family' => '',
@@ -74,6 +75,10 @@ function crd_activate_plugin() {
             'gap_between_cards' => 20,
             'text_color' => '#333333',
             'name_color' => '#666666',
+            'rating_color' => '#ffa500',
+            'mobile_columns' => 1,
+            'profile_pic_size' => 50,
+            'profile_pic_shape' => 'circle',
         );
         add_option('crd_settings', $defaults);
     }

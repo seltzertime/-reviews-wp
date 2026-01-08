@@ -52,6 +52,8 @@ class CRD_Reviews_Admin {
         $name = get_post_meta($post->ID, '_crd_review_name', true);
         $rating = get_post_meta($post->ID, '_crd_review_rating', true);
         $featured = get_post_meta($post->ID, '_crd_review_featured', true);
+        $profile_pic_id = get_post_meta($post->ID, '_crd_review_profile_pic', true);
+        $profile_pic_url = $profile_pic_id ? wp_get_attachment_image_url($profile_pic_id, 'thumbnail') : '';
 
         ?>
         <div class="crd-admin-meta-box">
@@ -95,6 +97,25 @@ class CRD_Reviews_Admin {
                        value="<?php echo esc_attr($name); ?>"
                        class="widefat"
                        placeholder="<?php esc_attr_e('e.g., John Smith', 'custom-reviews-display'); ?>">
+            </div>
+
+            <div class="crd-field-group">
+                <label>
+                    <strong><?php _e('Profile Picture (Optional)', 'custom-reviews-display'); ?></strong>
+                    <span class="description"><?php _e('(Image displayed next to reviewer name)', 'custom-reviews-display'); ?></span>
+                </label>
+                <div class="crd-profile-pic-upload">
+                    <input type="hidden" id="crd_review_profile_pic" name="crd_review_profile_pic" value="<?php echo esc_attr($profile_pic_id); ?>">
+                    <div class="crd-profile-pic-preview">
+                        <?php if ($profile_pic_url) : ?>
+                            <img src="<?php echo esc_url($profile_pic_url); ?>" style="max-width: 100px; height: auto; border-radius: 4px;">
+                        <?php endif; ?>
+                    </div>
+                    <button type="button" class="button crd-upload-profile-pic"><?php _e('Upload/Select Image', 'custom-reviews-display'); ?></button>
+                    <?php if ($profile_pic_url) : ?>
+                        <button type="button" class="button crd-remove-profile-pic"><?php _e('Remove Image', 'custom-reviews-display'); ?></button>
+                    <?php endif; ?>
+                </div>
             </div>
 
             <div class="crd-field-group crd-inline-fields">
@@ -171,6 +192,16 @@ class CRD_Reviews_Admin {
             }
         }
 
+        // Save profile picture
+        if (isset($_POST['crd_review_profile_pic'])) {
+            $profile_pic_id = absint($_POST['crd_review_profile_pic']);
+            if ($profile_pic_id > 0) {
+                update_post_meta($post_id, '_crd_review_profile_pic', $profile_pic_id);
+            } else {
+                delete_post_meta($post_id, '_crd_review_profile_pic');
+            }
+        }
+
         // Save featured status
         if (isset($_POST['crd_review_featured'])) {
             update_post_meta($post_id, '_crd_review_featured', '1');
@@ -187,6 +218,8 @@ class CRD_Reviews_Admin {
 
         if (('post.php' === $hook || 'post-new.php' === $hook) && 'crd_review' === $post_type) {
             wp_enqueue_style('crd-admin-css', CRD_PLUGIN_URL . 'admin/css/admin-style.css', array(), CRD_VERSION);
+            wp_enqueue_media();
+            wp_enqueue_script('crd-admin-js', CRD_PLUGIN_URL . 'admin/js/admin-script.js', array('jquery'), CRD_VERSION, true);
         }
 
         if ('crd_review_page_crd-settings' === $hook) {

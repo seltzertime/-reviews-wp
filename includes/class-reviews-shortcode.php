@@ -100,6 +100,10 @@ class CRD_Reviews_Shortcode {
         $name = get_post_meta($post_id, '_crd_review_name', true);
         $rating = get_post_meta($post_id, '_crd_review_rating', true);
         $featured = get_post_meta($post_id, '_crd_review_featured', true);
+        $profile_pic_id = get_post_meta($post_id, '_crd_review_profile_pic', true);
+
+        $profile_pic_shape = isset($settings['profile_pic_shape']) ? $settings['profile_pic_shape'] : 'circle';
+        $profile_pic_class = $profile_pic_shape === 'square' ? 'crd-review-profile-pic crd-square' : 'crd-review-profile-pic';
 
         $card_class = 'crd-review-card';
         if ($featured) {
@@ -133,6 +137,12 @@ class CRD_Reviews_Shortcode {
 
             <?php if ($name) : ?>
                 <div class="crd-review-name">
+                    <?php if ($profile_pic_id) :
+                        $profile_pic_url = wp_get_attachment_image_url($profile_pic_id, 'thumbnail');
+                        if ($profile_pic_url) : ?>
+                            <img src="<?php echo esc_url($profile_pic_url); ?>" alt="<?php echo esc_attr($name); ?>" class="<?php echo esc_attr($profile_pic_class); ?>">
+                        <?php endif;
+                    endif; ?>
                     <strong><?php echo esc_html($name); ?></strong>
                 </div>
             <?php endif; ?>
@@ -168,6 +178,9 @@ class CRD_Reviews_Shortcode {
         $border_color = isset($settings['card_border_color']) ? $settings['card_border_color'] : '#e0e0e0';
 
         $mobile_columns = isset($settings['mobile_columns']) ? $settings['mobile_columns'] : 1;
+
+        $rating_size = isset($settings['rating_font_size']) ? $settings['rating_font_size'] : 20;
+        $profile_pic_size = isset($settings['profile_pic_size']) ? $settings['profile_pic_size'] : 50;
 
         ?>
         <style>
@@ -211,8 +224,17 @@ class CRD_Reviews_Shortcode {
                 <?php endif; ?>
             }
 
+            #<?php echo esc_attr($instance_id); ?> .crd-review-rating {
+                font-size: <?php echo esc_attr($rating_size); ?>px;
+            }
+
             #<?php echo esc_attr($instance_id); ?> .crd-star {
                 color: <?php echo esc_attr($rating_color); ?>;
+            }
+
+            #<?php echo esc_attr($instance_id); ?> .crd-review-profile-pic {
+                width: <?php echo esc_attr($profile_pic_size); ?>px;
+                height: <?php echo esc_attr($profile_pic_size); ?>px;
             }
 
             #<?php echo esc_attr($instance_id); ?> .crd-columns-<?php echo esc_attr($columns); ?> {

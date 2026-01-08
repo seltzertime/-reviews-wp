@@ -13,6 +13,7 @@
 /* Grid Layout */
 .crd-reviews-grid {
     display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
 
@@ -97,10 +98,26 @@
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     font-size: 14px;
     color: #666666;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .crd-review-name strong {
     font-weight: 600;
+}
+
+/* Profile Picture */
+.crd-review-profile-pic {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.crd-review-profile-pic.crd-square {
+    border-radius: 0;
 }
 
 /* No Reviews Message */

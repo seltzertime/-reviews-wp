@@ -69,6 +69,28 @@
     margin-top: 8px;
 }
 
+/* Profile Picture Upload */
+.crd-profile-pic-upload {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.crd-profile-pic-preview {
+    margin-right: 10px;
+}
+
+.crd-profile-pic-preview img {
+    display: block;
+    border: 1px solid #ddd;
+}
+
+.crd-upload-profile-pic,
+.crd-remove-profile-pic {
+    margin: 0 !important;
+}
+
 /* Settings Page Styling */
 .crd-settings-wrapper {
     display: flex;
