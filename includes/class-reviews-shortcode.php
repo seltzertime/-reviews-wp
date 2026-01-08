@@ -73,7 +73,7 @@ class CRD_Reviews_Shortcode {
 
         ?>
         <div class="crd-reviews-container" id="<?php echo esc_attr($instance_id); ?>">
-            <div class="crd-reviews-grid crd-columns-<?php echo esc_attr($columns); ?>">
+            <div class="crd-reviews-grid">
                 <?php
                 while ($reviews->have_posts()) {
                     $reviews->the_post();
@@ -185,6 +185,8 @@ class CRD_Reviews_Shortcode {
         ?>
         <style>
             #<?php echo esc_attr($instance_id); ?> .crd-reviews-grid {
+                display: grid;
+                grid-template-columns: repeat(<?php echo esc_attr($columns); ?>, 1fr);
                 gap: <?php echo esc_attr($gap); ?>px;
             }
 
@@ -235,10 +237,6 @@ class CRD_Reviews_Shortcode {
             #<?php echo esc_attr($instance_id); ?> .crd-review-profile-pic {
                 width: <?php echo esc_attr($profile_pic_size); ?>px;
                 height: <?php echo esc_attr($profile_pic_size); ?>px;
-            }
-
-            #<?php echo esc_attr($instance_id); ?> .crd-columns-<?php echo esc_attr($columns); ?> {
-                grid-template-columns: repeat(<?php echo esc_attr($columns); ?>, 1fr);
             }
 
             @media (max-width: 768px) {

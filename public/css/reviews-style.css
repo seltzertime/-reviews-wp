@@ -13,7 +13,7 @@
 /* Grid Layout */
 .crd-reviews-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    /* grid-template-columns set via inline styles per instance */
     gap: 20px;
 }
 
