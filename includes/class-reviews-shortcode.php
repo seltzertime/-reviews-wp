@@ -245,7 +245,7 @@ class CRD_Reviews_Shortcode {
             }
 
             #<?php echo esc_attr($instance_id); ?> .crd-reviewer-name-text {
-                margin-top: <?php echo esc_attr($name_vertical_offset); ?>px;
+                transform: translateY(<?php echo esc_attr($name_vertical_offset); ?>px);
             }
 
             @media (max-width: 768px) {
